@@ -1,0 +1,76 @@
+
+.inclusio-contrast {
+  background-color: #000 !important;
+  color: #FFD700 !important;
+}
+
+.inclusio-contrast * {
+  color: #FFD700 !important;
+  border-color: #FFD700 !important;
+  fill: #FFD700 !important;
+  background-color: transparent !important;
+}
+
+.inclusio-contrast a,
+.inclusio-contrast button,
+.inclusio-contrast input,
+.inclusio-contrast select,
+.inclusio-contrast textarea {
+  background-color: #111 !important;
+  color: #FFD700 !important;
+  border-color: #FFD700 !important;
+}
+
+/* Texte agrandi */
+.inclusio-large-text {
+  font-size: 20px !important;
+  line-height: 1.6 !important;
+}
+
+/* Police dyslexique */
+.inclusio-dys-font {
+  font-family: 'OpenDyslexic', Arial, sans-serif !important;
+}
+
+
+.inclusio-no-animation, .inclusio-no-animation * {
+  animation: none !important;
+  animation-name: none !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition: none !important;
+  transition-delay: 0s !important;
+  transition-duration: 0s !important;
+  scroll-behavior: auto !important;
+  transform: none !important;
+  will-change: auto !important;
+  opacity: 1 !important;
+  motion-path: none !important;
+  offset-path: none !important;
+  perspective: none !important;
+  perspective-origin: unset !important;
+}
+
+.inclusio-no-animation svg,
+.inclusio-no-animation svg * {
+  animation: none !important;
+  transition: none !important;
+}
+
+
+.inclusio-no-animation [style*="animation"],
+.inclusio-no-animation [style*="transition"],
+.inclusio-no-animation [style*="transform"],
+.inclusio-no-animation [style*="perspective"],
+.inclusio-no-animation [style*="motion"] {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  perspective: none !important;
+  will-change: auto !important;
+}
+
+.inclusio-hide {
+  display: none !important;
+}
