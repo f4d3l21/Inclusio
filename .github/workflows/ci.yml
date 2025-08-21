@@ -19,12 +19,15 @@ jobs:
 
     - name: 📦 Installation des dépendances
       run: npm install
+      working-directory: .
 
     - name: 🧹 Linting avec ESLint
       run: npx eslint . --ext .js
+      working-directory: .
 
     - name: 📊 Audit accessibilité avec Wave API
       run: node wave-audit.js
+      working-directory: .
       env:
         WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
 
