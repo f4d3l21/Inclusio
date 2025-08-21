@@ -1,5 +1,5 @@
 // scripts/wave-audit.js
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 const API_KEY = process.env.WAVE_API_KEY;
 const TARGET_URL = "https://www.apple.com/fr/";
@@ -23,4 +23,6 @@ async function runAudit() {
   }
 }
 
-runAudit();
+(async () => {
+  await runAudit();
+})();
