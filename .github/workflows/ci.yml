@@ -26,7 +26,7 @@ jobs:
       working-directory: .
 
     - name: 📊 Audit accessibilité avec Wave API
-      run: node wave-audit.js
+      run: node scripts/wave-audit.js
       working-directory: .
       env:
         WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
