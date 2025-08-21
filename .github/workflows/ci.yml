@@ -18,19 +18,15 @@ jobs:
         node-version: 18
 
     - name: 📦 Installation des dépendances
-      working-directory: ./Inclusio
       run: npm install
 
     - name: 🧹 Linting avec ESLint
-      working-directory: ./Inclusio
       run: npx eslint . --ext .js
 
     - name: 📊 Audit accessibilité avec Wave API
-      working-directory: ./Inclusio
       run: node wave-audit.js
       env:
         WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
 
     - name: 📦 Création du fichier ZIP
-      working-directory: ./Inclusio
-      run: zip -r ../inclusio.zip . -x "*.git*" "node_modules/*" "*.github*"
+      run: zip -r inclusio.zip . -x "*.git*" "node_modules/*" "*.github*"
