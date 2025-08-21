@@ -4,7 +4,8 @@
   "description": "\"CI / CD mise en place\"",
   "main": "content_script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .js"
   },
   "repository": {
     "type": "git",
@@ -13,12 +14,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/f4d3l21/Inclusio/issues"
   },
   "homepage": "https://github.com/f4d3l21/Inclusio#readme",
   "dependencies": {
     "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
   }
 }
