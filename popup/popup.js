@@ -1,26 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
   const contrast = document.getElementById("contrast");
-  const largeText = document.getElementById("largeText");
+  const textSizeSlider = document.getElementById("textSizeSlider");
+  const textSizeValue = document.getElementById("textSizeValue");
   const dysFont = document.getElementById("dysFont");
   const simplified = document.getElementById("simplified");
   const noAnimation = document.getElementById("noAnimation");
+  const keyboardNav = document.getElementById("keyboardNav");
 
-  // Charger les préférences existantes
-  chrome.storage.sync.get(["contrast", "largeText", "dysFont", "simplified", "noAnimation"], (data) => {
+  chrome.storage.sync.get(["contrast", "textSize", "dysFont", "simplified", "noAnimation", "keyboardNav"], (data) => {
     contrast.checked = data.contrast || false;
-    largeText.checked = data.largeText || false;
+    textSizeSlider.value = data.textSize || 100;
+    textSizeValue.textContent = `${textSizeSlider.value}%`;
     dysFont.checked = data.dysFont || false;
     simplified.checked = data.simplified || false;
     noAnimation.checked = data.noAnimation || false;
+    keyboardNav.checked = data.keyboardNav || false;
+    if (keyboardNav.checked) {
+      document.body.classList.add("inclusio-keyboard-nav");
+    }
+  });
+
+  textSizeSlider.addEventListener("input", () => {
+    textSizeValue.textContent = `${textSizeSlider.value}%`;
+    document.getElementById("previewBox").style.fontSize = `${textSizeSlider.value}%`;
   });
 
   document.getElementById("save").addEventListener("click", () => {
     const prefs = {
       contrast: contrast.checked,
-      largeText: largeText.checked,
+      textSize: parseInt(textSizeSlider.value),
       dysFont: dysFont.checked,
       simplified: simplified.checked,
       noAnimation: noAnimation.checked,
+      keyboardNav: keyboardNav.checked,
     };
 
     chrome.storage.sync.set(prefs, () => {
@@ -35,5 +47,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
     });
+    if (keyboardNav.checked) {
+      document.body.classList.add("inclusio-keyboard-nav");
+    } else {
+      document.body.classList.remove("inclusio-keyboard-nav");
+    }
   });
+
+  const profileBtn = document.getElementById("profileBtn");
+  if (profileBtn) {
+    profileBtn.addEventListener("click", () => {
+      window.location.href = "profiles.html";
+    });
+  }
 });

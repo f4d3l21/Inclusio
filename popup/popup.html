@@ -3,18 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <title>Inclusio</title>
-  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <h1>Inclusio</h1>
-  <div id="settings">
-    <label><input type="checkbox" id="contrast"> Contraste élevé</label><br>
-    <label><input type="checkbox" id="largeText"> Texte agrandi</label><br>
-    <label><input type="checkbox" id="dysFont"> Police dyslexique</label><br>
-    <label><input type="checkbox" id="simplified"> Lecture simplifiée</label><br>
-    <label><input type="checkbox" id="noAnimation"> Désactiver les animations</label><br>
+  <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="header" style="display: flex; align-items: center;">
+      <img src="../assets/logo.png" alt="Logo Inclusio" style="height: 24px;">
+      <span style="margin-left: 8px; font-weight: bold; font-size: 16px;">Inclusio</span>
+    </div>
+    <div class="top-icons">
+      <button id="profileBtn" class="profile-btn" title="Profil">👤</button>
+    </div>
   </div>
-  <button id="save">Sauvegarder</button>
+  <div class="settings-panel">
+    <h2 class="main-title">Paramètres d'accessibilité</h2>
+
+    <section>
+      <div class="toggle-switch">
+        <label for="contrast">Contraste élevé</label>
+        <input type="checkbox" id="contrast">
+      </div>
+    </section>
+
+    <section>
+      <label for="textSizeSlider">Taille du texte</label>
+      <div class="slider-container">
+        <input type="range" id="textSizeSlider" min="100" max="130" step="2" value="100">
+        <span id="textSizeValue">100%</span>
+      </div>
+    </section>
+
+    <section>
+      <div class="toggle-switch">
+        <label for="noAnimation">Réduire les animations</label>
+        <input type="checkbox" id="noAnimation">
+      </div>
+    </section>
+
+    <section>
+      <div class="toggle-switch">
+        <label for="dysFont">Police dyslexique</label>
+        <input type="checkbox" id="dysFont">
+      </div>
+    </section>
+
+    <section>
+      <div class="toggle-switch">
+        <label for="simplified">Lecture simplifiée</label>
+        <input type="checkbox" id="simplified">
+      </div>
+    </section>
+
+    <section>
+      <div class="toggle-switch">
+        <label for="keyboardNav">Navigation au clavier</label>
+        <input type="checkbox" id="keyboardNav">
+      </div>
+    </section>
+
+    <section class="preview-box" id="previewBox" style="max-height: 100px;">
+      <div class="preview-section" style="padding: 10px;">
+        <div class="text-preview">
+          <strong>Prévisualisation</strong><br>
+          Le contraste, la taille du texte et d'autres options seront visibles ici.
+        </div>
+      </div>
+    </section>
+
+    <button id="save" class="save-button">💾 Sauvegarder</button>
+  </div>
+
+  <div id="profilePanel" class="profile-panel" style="display: none;">
+    <h2>Profils prédéfinis</h2>
+    <p>Sélectionnez un profil pour appliquer des réglages adaptés :</p>
+    <div class="profile-buttons">
+      <button class="profile-option" data-profile="visuel">Profil malvoyant</button>
+      <button class="profile-option" data-profile="dys">Profil dyslexique</button>
+      <button class="profile-option" data-profile="moteur">Profil moteur</button>
+      <button class="profile-option" data-profile="cognitif">Profil cognitif</button>
+      <button class="profile-option" data-profile="epilepsie">Profil épilepsie</button>
+    </div>
+  </div>
 
   <script src="popup.js"></script>
 </body>

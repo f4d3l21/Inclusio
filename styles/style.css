@@ -1,4 +1,3 @@
-
 .inclusio-contrast {
   background-color: #000 !important;
   color: #FFD700 !important;
@@ -21,15 +20,41 @@
   border-color: #FFD700 !important;
 }
 
-/* Texte agrandi */
-.inclusio-large-text {
-  font-size: 20px !important;
-  line-height: 1.6 !important;
+.inclusio-large-text p,
+.inclusio-large-text li,
+.inclusio-large-text span,
+.inclusio-large-text label,
+.inclusio-large-text a,
+.inclusio-large-text button,
+.inclusio-large-text input,
+.inclusio-large-text select,
+.inclusio-large-text textarea,
+.inclusio-large-text .text,
+.inclusio-large-text .paragraph,
+.inclusio-large-text .content {
+  font-size: 1.03em !important;
+  line-height: 1.4 !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  white-space: normal !important;
 }
 
-/* Police dyslexique */
+.inclusio-large-text .hero,
+.inclusio-large-text .title,
+.inclusio-large-text .nav,
+.inclusio-large-text .header,
+.inclusio-large-text .main-banner {
+  font-size: inherit !important;
+  transform: none !important;
+  scale: 1 !important;
+}
+
 .inclusio-dys-font {
-  font-family: 'OpenDyslexic', Arial, sans-serif !important;
+  font-family: 'OpenDyslexic', 'OpenDyslexic-Regular', Arial, sans-serif !important;
+}
+
+.inclusio-dys-font * {
+  font-family: 'OpenDyslexic', 'OpenDyslexic-Regular', Arial, sans-serif !important;
 }
 
 
@@ -73,4 +98,51 @@
 
 .inclusio-hide {
   display: none !important;
+}
+
+.inclusio-focus-visible :focus-visible {
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px;
+  border-radius: 4px;
+  background-color: transparent !important;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: #FFD700;
+  color: #000;
+  padding: 8px;
+  z-index: 10000;
+  transition: top 0.3s;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+.inclusio-focus-visible *:focus {
+  outline: 3px solid #FF9900 !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+  background-color: transparent !important;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: #FFD700;
+  color: #000;
+  padding: 8px;
+  z-index: 10000;
+  transition: top 0.3s;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  top: 10px;
 }

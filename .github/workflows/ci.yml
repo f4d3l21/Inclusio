@@ -1,0 +1,32 @@
+name: CI - Inclusio Extension
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout du repo
+      uses: actions/checkout@v3
+
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: 📦 Installation des dépendances
+      run: npm install
+
+    - name: 🧹 Linting avec ESLint
+      run: npx eslint . --ext .js
+
+    - name: 📊 Audit accessibilité avec Wave API
+      run: node wave-audit.js
+      env:
+        WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
+
+    - name: 📦 Création du fichier ZIP
+      run: zip -r inclusio.zip . -x "*.git*" "node_modules/*" "*.github*"

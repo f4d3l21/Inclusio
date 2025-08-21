@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profils prédéfinis - Inclusio</title>
+  <link rel="stylesheet" href="profiles.css" />
+</head>
+<body>
+  <button id="backBtn" title="Retour">←</button>
+
+  <h1 class="main-title">Profils prédéfinis</h1>
+
+  <section class="options">
+    <label><input type="checkbox" id="lowVision" /> 👁️ Profil malvoyant</label>
+    <label><input type="checkbox" id="colorBlind" /> 🎨 Profil daltonien</label>
+    <label><input type="checkbox" id="dyslexia" /> 🔤 Profil dyslexique</label>
+    <label><input type="checkbox" id="epilepsy" /> ⚡ Profil épileptique</label>
+    <label><input type="checkbox" id="mobility" /> 🖱️ Profil mobilité réduite</label>
+  </section>
+
+  <div class="preview-box">
+    <strong>Prévisualisation</strong>
+    <p>Le contraste, la taille du texte et d'autres options seront visibles ici.</p>
+  </div>
+
+  <button id="save" class="save-button">
+    💾 <span>Sauvegarder</span>
+  </button>
+
+  <script src="../popup/profiles.js"></script>
+</body>
+</html>

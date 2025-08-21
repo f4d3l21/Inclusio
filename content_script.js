@@ -1,7 +1,15 @@
-// Appliquer les préférences à la page
 function applyPreferences(prefs) {
   document.body.classList.toggle("inclusio-contrast", prefs.contrast);
-  document.body.classList.toggle("inclusio-large-text", prefs.largeText);
+
+  if (prefs.textSize && !isNaN(prefs.textSize) && prefs.textSize !== 100) {
+    document.querySelectorAll("body, body *").forEach(el => {
+      el.style.setProperty("font-size", `${prefs.textSize}%`, "important");
+    });
+  } else {
+    document.querySelectorAll("body, body *").forEach(el => {
+      el.style.removeProperty("font-size");
+    });
+  }
 
   if (prefs.dysFont) {
     if (!document.getElementById("inclusio-dys-font")) {
@@ -32,26 +40,39 @@ function applyPreferences(prefs) {
   }
 
   document.body.classList.toggle("inclusio-no-animation", prefs.noAnimation);
+  document.body.classList.toggle("inclusio-focus-visible", prefs.keyboardNav);
+  if (prefs.keyboardNav) {
+    document.body.setAttribute("data-inclusio-nav", "true");
+  } else {
+    document.body.removeAttribute("data-inclusio-nav");
+  }
 }
 
-// Appliquer au chargement initial
-chrome.storage.sync.get(["contrast", "largeText", "dysFont", "simplified", "noAnimation"], applyPreferences);
+chrome.storage.sync.get(["contrast", "textSize", "dysFont", "simplified", "noAnimation", "keyboardNav"], applyPreferences);
 
-// Réagir aux messages du popup
-chrome.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "applyPreferences") {
     applyPreferences(request.data);
+    sendResponse({ success: true });
+    return true;
+  }
+  if (request.action === "applyProfile") {
+    const prefs = request.data;
+    chrome.storage.sync.set(prefs, () => {
+      applyPreferences(prefs);
+      sendResponse({ success: true });
+    });
+    return true;
   }
 });
 
-// Observer les changements d'URL (pour SPAs comme YouTube)
 function observeUrlChangeAndReapply() {
   let currentUrl = location.href;
   new MutationObserver(() => {
     if (location.href !== currentUrl) {
       currentUrl = location.href;
       setTimeout(() => {
-        chrome.storage.sync.get(["contrast", "largeText", "dysFont", "simplified", "noAnimation"], applyPreferences);
+        chrome.storage.sync.get(["contrast", "textSize", "dysFont", "simplified", "noAnimation", "keyboardNav"], applyPreferences);
       }, 500);
     }
   }).observe(document, { subtree: true, childList: true });
