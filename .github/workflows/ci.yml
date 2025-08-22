@@ -33,3 +33,9 @@ jobs:
 
     - name: 📦 Création du fichier ZIP
       run: zip -r inclusio.zip . -x "*.git*" "node_modules/*" "*.github*"
+
+    - name: 📤 Upload du fichier ZIP
+      uses: actions/upload-artifact@v3
+      with:
+        name: inclusio-extension
+        path: inclusio.zip
