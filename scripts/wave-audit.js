@@ -18,6 +18,11 @@ async function runAudit() {
     process.exit(1);
   }
 
+  if (!result.status.resultscount || typeof result.status.resultscount.error !== 'number') {
+    console.error("❌ Le champ resultscount.error est manquant ou invalide :", JSON.stringify(result.status, null, 2));
+    process.exit(1);
+  }
+
   console.log("📊 Résultat de l'audit WAVE :", JSON.stringify(result, null, 2));
 
   if (result.status.resultscount.error > 0) {
