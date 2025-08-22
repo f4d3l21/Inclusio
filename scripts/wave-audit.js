@@ -18,15 +18,17 @@ async function runAudit() {
     process.exit(1);
   }
 
-  if (!result.status.resultscount || typeof result.status.resultscount.error !== 'number') {
-    console.error("❌ Le champ resultscount.error est manquant ou invalide :", JSON.stringify(result.status, null, 2));
+  if (!result.categories || !result.categories.error) {
+    console.error("❌ Les erreurs d'accessibilité n'ont pas pu être extraites correctement :", JSON.stringify(result, null, 2));
     process.exit(1);
   }
 
+  const errorCount = result.categories.error.count;
+
   console.log("📊 Résultat de l'audit WAVE :", JSON.stringify(result, null, 2));
 
-  if (result.status.resultscount.error > 0) {
-    console.error(`❌ ${result.status.resultscount.error} erreur(s) d'accessibilité détectée(s).`);
+  if (errorCount > 0) {
+    console.error(`❌ ${errorCount} erreur(s) d'accessibilité détectée(s).`);
     process.exit(1);
   } else {
     console.log("✅ Aucun problème d’accessibilité détecté.");
