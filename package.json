@@ -4,8 +4,7 @@
   "description": "\"CI / CD mise en place\"",
   "main": "content_script.js",
   "devDependencies": {
-    "eslint": "^9.0.0",
-    "node-fetch": "^3.3.2"
+    "eslint": "^9.0.0"
   },
   "scripts": {
     "lint": "eslint . --ext .js",
@@ -21,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/f4d3l21/Inclusio/issues"
   },
-  "homepage": "https://github.com/f4d3l21/Inclusio#readme"
+  "homepage": "https://github.com/f4d3l21/Inclusio#readme",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
 }
