@@ -13,6 +13,11 @@ async function runAudit() {
   const response = await fetch(`https://wave.webaim.org/api/request?key=${API_KEY}&reporttype=4&url=${TARGET_URL}`);
   const result = await response.json();
 
+  if (!result || !result.status || result.status.success === false) {
+    console.error("❌ Résultat de l’audit WAVE invalide :", JSON.stringify(result, null, 2));
+    process.exit(1);
+  }
+
   console.log("📊 Résultat de l'audit WAVE :", JSON.stringify(result, null, 2));
 
   if (result.status.resultscount.error > 0) {
